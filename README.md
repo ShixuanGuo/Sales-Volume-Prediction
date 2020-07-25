@@ -78,8 +78,10 @@ Exploring data trends, seasonalities and correlations can help us a lot when sel
     ts_log_diff.dropna(inplace=True)
     ```  
     Adjusted data is stationary.  
+    
     <img src="https://github.com/ShixuanGuo/Sales-Volume-Prediction/blob/master/img/stationary.png" alt="stationary" width="403" height="490">  
-    3) Hyperparameter tuning 
+    
+    3) Hyperparameter tuning  
     Choose p and q combination which has the lowest BIC score.  
     ```python
     p,q=best_hyperparameter(ts_log_train,ts_log_test)
