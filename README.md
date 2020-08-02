@@ -11,6 +11,8 @@ By extracting data from websites and analyzing historical sales data, build a mo
   - Data preprocessing
   - Feature engineering
   - Model buidling: Time series ARIMA model; Machine learning model; Combination model
+  <img src="https://github.com/ShixuanGuo/Sales-Volume-Prediction/blob/master/img/models.png" alt="models" width="731" height="348">  
+
 4. **Packages**  
   - ProfileReport
   - Pandas
@@ -95,8 +97,36 @@ Exploring data trends, seasonalities and correlations can help us a lot when sel
     The WAPE of time series model is around 0.6.  
 
 2. **Machine Learning Models**  
-    1) KNN  
-    2) Random Forest  
-    3) XGBoost  
-    4) DNN  
+    1) Split trianing and test dataset  
+    ```python
+    df_train=df.sample(frac=0.7, random_state=7)
+    df_test=df.drop(df_train.index)
+    ```  
+    2) **KNN** model    
+    Before fitting KNN model, I scaled features using standard scaling. Then try KNN model with a series of Ks (number of neighbors). Record the best k and minimized error.   
+    ```python
+    scaler = preprocessing.StandardScaler().fit(X_train)
+    X=scaler.transform(X_train)
+    X_test=scaler.transform(X_test)
+    best_KNN(X,Y,X_test,Y_test)
+    ```  
+    <img src="https://github.com/ShixuanGuo/Sales-Volume-Prediction/blob/master/img/Tuning_hyperparameter.png" alt="Tuning_hyperparameter" width="481.1" height="338.8">  
+    
+    3) **Random Forest**  
+    Hyperparameter: number of estimators  
+    4) **XGBoost**  
+    Hyperparameter: learning rate; number of estimators  
+    5) **DNN**  
+    Hyperparameter: number of hidden layer; learning rate...  
+    6) Among all machine learning models, choose the model with lowest error to fit the whole dataset and make prediction.  
 ## Part 6 Model optimization
+1. **Idea**  
+    Rather than directly predict each product's sales volume, I separate it into three steps:  
+    - Predict total sales volume
+    - Predict product portion
+    - Predict each product's sales volume : sales volume = total * portion  
+ 2. **Model**  
+    In each step, choose the best machine learning model in the same way as part 5 to minimize each step's prediction error. Thus, we can get better prediction performance.  
+
+## Part 7 Result
+<img src="https://github.com/ShixuanGuo/Sales-Volume-Prediction/blob/master/img/result.png" alt="result" width="397" height="294">  
