@@ -110,7 +110,7 @@ Exploring data trends, seasonalities and correlations can help us a lot when sel
     X_test=scaler.transform(X_test)
     best_KNN(X,Y,X_test,Y_test)
     ```  
-    <img src="https://github.com/ShixuanGuo/Sales-Volume-Prediction/blob/master/img/Tuning_hyperparameter.png" alt="Tuning_hyperparameter" width="481.1" height="338.8">  
+    <img src="https://github.com/ShixuanGuo/Sales-Volume-Prediction/blob/master/img/Tuning_hyperparameter.png" alt="Tuning_hyperparameter" width="336.7" height="237.2">  
     
     3) **Random Forest**  
     Hyperparameter: number of estimators  
